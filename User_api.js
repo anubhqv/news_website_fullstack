@@ -5,16 +5,18 @@ const User = require('./../models/User');
 
 // Signup Route
 router.post('/signup', (req, res) => {
+   
     let { name, email, Password, DOB } = req.body;
-
+    
     // ✅ Sanitize inputs safely
     name = name ? name.trim() : "";
     email = email ? email.trim() : "";
     Password = Password ? Password.trim() : "";
-    DOB = DOB ? DOB.trim() : "";
+   
+    
 
     // ✅ Basic validation
-    if (!name || !email || !Password || !DOB) {
+    if (!name || !email || !Password) {
         return res.json({
             status: "FAILED",
             message: "Empty input fields!"
@@ -37,13 +39,7 @@ router.post('/signup', (req, res) => {
         });
     }
 
-    // ✅ DOB validation
-    if (!new Date(DOB).getTime()) {
-        return res.json({
-            status: "FAILED",
-            message: "Invalid Date of Birth."
-        });
-    }
+
 
     // ✅ Password strength
     if (Password.length < 8) {
@@ -69,7 +65,6 @@ router.post('/signup', (req, res) => {
                         name,
                         email,
                         Password: hashedPassword,
-                        DOB
                     });
 
                     newUser.save()
