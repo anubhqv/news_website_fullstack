@@ -164,7 +164,7 @@ This project is developed as a collaborative effort for a 3rd-year minor project
 
 ## 📄 License
 
-*(Add your project license here)*
+--------
 
 ## 📞 Support
 
